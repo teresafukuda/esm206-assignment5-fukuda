@@ -22,3 +22,32 @@ salary_data <- read_csv("salary_data.csv")
 
 ```
 
+```{r}
+###############################################################
+# 1) Male and female graduate enrollment (1967 - 2015)
+###############################################################
+
+# Creating a simplified data frame excluding non profit and for profit schools as well as irrelavent totals
+grad_enroll_ftf <- grad_enroll %>% 
+  select(Year, full_time_m, full_time_f, part_time_m, part_time_f)
+
+```
+
+```{r}
+###############################################################
+# 2) Shifts in female PhD recipients by field (1985, 2000, and 2015)
+###############################################################
+```
+
+```{r}
+###############################################################
+# 3) Male and female salaries for starting postdoctoral and other employment positions (2015)
+###############################################################
+```
+
+```{r}
+###############################################################
+# 4) Exploring academic salaries for professors in U.S. colleges
+###############################################################
+```
+
