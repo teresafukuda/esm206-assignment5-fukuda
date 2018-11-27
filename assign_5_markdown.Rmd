@@ -1,0 +1,23 @@
+---
+title: "ESM206 Assignment 5"
+author: "Teresa Fukuda"
+date: "11/26/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Load packages and data
+
+library(tidyverse)
+
+grad_enroll <-read_csv("grad_enrollment.csv")
+med_salary <-read_csv("median_salary_postdoc.csv")
+phds <-read_csv("phds.csv")
+salary_data <- read_csv("salary_data.csv")
+
+```
+
