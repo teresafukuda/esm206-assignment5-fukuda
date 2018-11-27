@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # Load packages and data
 
 library(tidyverse)
+library (stargazer)
 
 grad_enroll <-read_csv("grad_enrollment.csv")
 med_salary <-read_csv("median_salary_postdoc.csv")
