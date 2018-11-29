@@ -88,6 +88,12 @@ summary(salary_lm2)
 # yrs.service still has a negative coefficient... this is not logical
 
 
+# taking out faculty.rank (since rank is mostly just determined by how long they are there?)
+salary_lm3 <- lm(salary ~ sex+discipline+yrs.service, data=salary_data)
+
+summary(salary_lm3)
+
+plot(salary_lm3)
 
 ```
 
