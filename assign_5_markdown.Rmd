@@ -14,6 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library (stargazer)
+library(GGally)
 
 grad_enroll <-read_csv("grad_enrollment.csv")
 med_salary <-read_csv("median_salary_postdoc.csv")
@@ -77,6 +78,15 @@ avg_salary_sex
 salary_lm1 <- lm (salary ~ sex+faculty.rank+discipline+yrs.since.phd+yrs.service, data=salary_data)
 
 summary(salary_lm1)
+
+# taking out yrs.since.phd, since it likely pretty much same as years.service; also makes no sense that the years of service would have a negative coefficient
+
+salary_lm2 <- lm(salary ~ sex+faculty.rank+discipline+yrs.service, data=salary_data)
+
+summary(salary_lm2)
+
+# yrs.service still has a negative coefficient... this is not logical
+
 
 
 ```
