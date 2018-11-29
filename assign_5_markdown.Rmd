@@ -52,5 +52,28 @@ grad_enroll_ftf <- grad_enroll %>%
 
 # Find a good multiple linear regression model with the output being salary, and the variables (some combination of) sex, discipline, rank, years of service, years since phd 
 
+# Some data exploration 
+#plot of salary by gender
+salary_plot <- ggplot (salary_data, aes(x=sex, y=salary))+
+  geom_point(aes(color=faculty.rank), alpha=0.6)
+salary_plot
+
+#plot of salary by faculty rank
+facultyrank_plot <- ggplot (salary_data, aes(x=faculty.rank, y=salary))+
+  geom_point(aes(color=sex))
+facultyrank_plot
+
+# well this doesn't seem to be saying much, not seeing any glaring trends here
+
+# summary table looking at salary by sex and faculty position... interesting? maybe.
+avg_salary_sex <- salary_data %>% 
+  group_by(sex, faculty.rank) %>% 
+  summarize(mean= mean(salary),
+            count=n())
+avg_salary_sex
+
+
+
+
 ```
 
