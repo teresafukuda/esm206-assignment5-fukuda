@@ -31,6 +31,34 @@ salary_data <- read_csv("salary_data.csv")
 grad_enroll_ftf <- grad_enroll %>% 
   select(Year, full_time_m, full_time_f, part_time_m, part_time_f)
 
+#creating a linear model for male graduate enrollment
+male_grad <- lm(grad_enroll$total_males ~ grad_enroll$Year)
+
+summary(male_grad)
+
+#creating a linear model for female graduate enrollment
+female_grad <- lm(grad_enroll$total_females ~ grad_enroll$Year)
+
+summary(female_grad)
+
+#create a graph of the models
+enroll_graph <- grad_enroll %>% 
+  ggplot(aes(x = Year, y = total_males))+
+  geom_point(aes(color = "blue"))+
+  geom_smooth(aes(x = Year, y = total_males),method = lm, se = TRUE, size = 0.5, color = "gray20") + #plots the linear model with a confidence interval (se)
+  geom_point(aes(x = Year, y = total_females, color = "pink"))+
+  geom_smooth(aes(x = Year, y = total_females),method = lm, se = TRUE, size = 0.5, color = "gray20")+
+  theme_classic() +
+  theme(legend.position="none")+
+  scale_color_discrete(labels=c("Females", "Males")) +
+  labs(x = "\nYear", y = "Total Enrollment\n", title = "Male and Female Graduate Enrollment (1967-2015)") +
+  scale_x_continuous(expand = c(0,0), limits = c(1967, 2015)) +
+  theme(text = element_text(family = "Times New Roman")) + 
+  theme(plot.title = element_text(hjust = 0.5, size = 13)) +
+  theme(axis.title = element_text(size = 12), axis.text = element_text(size = 10))
+
+enroll_graph
+
 ```
 
 ```{r}
