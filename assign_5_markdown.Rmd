@@ -49,7 +49,7 @@ enroll_graph <- grad_enroll %>%
   geom_point(aes(x = Year, y = total_females, color = "pink"))+
   geom_smooth(aes(x = Year, y = total_females),method = lm, se = TRUE, size = 0.5, color = "gray20")+
   theme_classic() +
-  theme(legend.position="none")+
+  theme(legend.title=element_blank())+
   scale_color_discrete(labels=c("Females", "Males")) +
   labs(x = "\nYear", y = "Total Enrollment\n", title = "Male and Female Graduate Enrollment (1967-2015)") +
   scale_x_continuous(expand = c(0,0), limits = c(1967, 2015)) +
@@ -65,12 +65,16 @@ enroll_graph
 ###############################################################
 # 2) Shifts in female PhD recipients by field (1985, 2000, and 2015)
 ###############################################################
+
+#maybe a chisquare tets for proportions of females in each field by year
 ```
 
 ```{r}
 ###############################################################
 # 3) Male and female salaries for starting postdoctoral and other employment positions (2015)
 ###############################################################
+
+#2 mann whitney u tests (one for median postdoc salary male vs female, one for median other employment male vs female)
 ```
 
 ```{r}
