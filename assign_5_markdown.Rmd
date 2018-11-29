@@ -72,7 +72,11 @@ avg_salary_sex <- salary_data %>%
             count=n())
 avg_salary_sex
 
+# linear model with ALL possible variables
 
+salary_lm1 <- lm (salary ~ sex+faculty.rank+discipline+yrs.since.phd+yrs.service, data=salary_data)
+
+summary(salary_lm1)
 
 
 ```
