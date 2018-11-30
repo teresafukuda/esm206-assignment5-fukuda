@@ -35,11 +35,13 @@ grad_enroll_ftf <- grad_enroll %>%
 male_grad <- lm(grad_enroll$total_males ~ grad_enroll$Year)
 
 summary(male_grad)
+plot(male_grad)
 
 #creating a linear model for female graduate enrollment
 female_grad <- lm(grad_enroll$total_females ~ grad_enroll$Year)
 
 summary(female_grad)
+plot(female_grad)
 
 #create a graph of the models
 enroll_graph <- grad_enroll %>% 
@@ -75,6 +77,35 @@ enroll_graph
 ###############################################################
 
 #2 mann whitney u tests (one for median postdoc salary male vs female, one for median other employment male vs female)
+
+#explore data for posdoc salaries
+male_post_sal <- ggplot(med_salary, aes(x = postdoc_m)) +
+  geom_histogram(binwidth = 15000)
+male_post_sal #not normally distributed
+
+female_post_sal <- ggplot(med_salary, aes(x = postdoc_f)) +
+  geom_histogram(binwidth = 15000)
+female_post_sal #not normally distributed
+
+#want comparison of means so do Mann Whitney U
+#H0: Ranks are equal
+#HA: ranks are different
+post_sal_test <- wilcox.test(med_salary$postdoc_f, med_salary$postdoc_m)
+post_sal_test
+
+
+#explore data for employement salaries
+male_employ_sal <- ggplot(med_salary, aes(x = employment_m)) +
+  geom_histogram(binwidth = 15000)
+male_employ_sal #maybe normally distributed?
+
+
+female_employ_sal <- ggplot(med_salary, aes(x = employment_f)) +
+  geom_histogram(binwidth = 15000)
+female_employ_sal #maybe normally distributed?
+
+employ_sal_test <- wilcox.test(med_salary$employment_f, med_salary$employment_m)
+employ_sal_test
 ```
 
 ```{r}
