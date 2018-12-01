@@ -105,6 +105,25 @@ female_post_qq
 post_sal_test <- wilcox.test(med_salary$postdoc_f, med_salary$postdoc_m)
 post_sal_test
 
+med_sal_2<-melt(med_salary, id.vars = 'field' )
+
+post_sal_graph <- med_sal_2 %>%  
+  filter(variable == "postdoc_m" | variable == "postdoc_f") %>% 
+  ggplot(aes(x = field, y = value)) +
+  geom_col(aes(fill = variable), position = "dodge") +
+  scale_fill_manual(values = c("blue", "pink"), labels = c("Male", "Female")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 8)) +
+  theme(legend.title=element_blank())+
+  labs(x = "\nField", y = "Median Salary\n", title = "Male and Female Median Postdoc Salaries 2015") +
+  theme(text = element_text(family = "Times New Roman")) + 
+  theme(plot.title = element_text(hjust = 0.5, size = 13)) +
+  theme(axis.title = element_text(size = 12)) +
+  scale_y_continuous(expand = c(0,0)) +
+  scale_x_discrete(labels = function(x) lapply(strwrap(x, width = 10, simplify = FALSE), paste, collapse="\n"))
+
+post_sal_graph
+
 #explore data for employement salaries
 male_employ_sal <- ggplot(med_salary, aes(x = employment_m)) +
   geom_histogram(binwidth = 15000)
@@ -116,6 +135,23 @@ female_employ_sal #maybe normally distributed?
 
 employ_sal_test <- wilcox.test(med_salary$employment_f, med_salary$employment_m)
 employ_sal_test
+
+employ_sal_graph <- med_sal_2 %>%  
+  filter(variable == "employment_m" | variable == "employment_f") %>% 
+  ggplot(aes(x = field, y = value)) +
+  geom_col(aes(fill = variable), position = "dodge") +
+  scale_fill_manual(values = c("blue", "pink"), labels = c("Male", "Female")) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 8)) +
+  theme(legend.title=element_blank())+
+  labs(x = "\nField", y = "Median Salary\n", title = "Male and Female Median non Postdoc Salaries 2015") +
+  theme(text = element_text(family = "Times New Roman")) + 
+  theme(plot.title = element_text(hjust = 0.5, size = 13)) +
+  theme(axis.title = element_text(size = 12)) +
+  scale_y_continuous(expand = c(0,0)) +
+  scale_x_discrete(labels = function(x) lapply(strwrap(x, width = 10, simplify = FALSE), paste, collapse="\n"))
+
+employ_sal_graph
 ```
 
 ```{r}
