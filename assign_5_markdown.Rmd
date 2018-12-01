@@ -80,12 +80,24 @@ enroll_graph
 
 #explore data for posdoc salaries
 male_post_sal <- ggplot(med_salary, aes(x = postdoc_m)) +
-  geom_histogram(binwidth = 15000)
+  geom_histogram(binwidth = 5000, aes(color = "black"))
 male_post_sal #not normally distributed
 
+# Checking the qq plot for this distribution
+male_post_qq <- ggplot(med_salary, aes(sample = postdoc_m)) +
+  geom_qq()
+male_post_qq
+#Looking like it's potentially linear
+
 female_post_sal <- ggplot(med_salary, aes(x = postdoc_f)) +
-  geom_histogram(binwidth = 15000)
+  geom_histogram(binwidth = 5000, aes(color = "black"))
 female_post_sal #not normally distributed
+
+# Checking the qq plot for this distribution
+female_post_qq <- ggplot(med_salary, aes(sample = postdoc_f)) +
+  geom_qq()
+female_post_qq
+# NOT looking linear
 
 #want comparison of means so do Mann Whitney U
 #H0: Ranks are equal
@@ -93,12 +105,10 @@ female_post_sal #not normally distributed
 post_sal_test <- wilcox.test(med_salary$postdoc_f, med_salary$postdoc_m)
 post_sal_test
 
-
 #explore data for employement salaries
 male_employ_sal <- ggplot(med_salary, aes(x = employment_m)) +
   geom_histogram(binwidth = 15000)
 male_employ_sal #maybe normally distributed?
-
 
 female_employ_sal <- ggplot(med_salary, aes(x = employment_f)) +
   geom_histogram(binwidth = 15000)
