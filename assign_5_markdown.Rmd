@@ -232,7 +232,7 @@ summary(salary_lm2)
 
 
 # taking out faculty.rank (since rank is mostly just determined by how long they are there?)
-salary_lm3 <- lm(salary ~ sex+discipline+yrs.service, data=salary_data)
+salary_lm3 <- lm(salary ~ sex+yrs.since.phd+discipline+faculty.rank, data=salary_data)
 
 summary(salary_lm3)
 
