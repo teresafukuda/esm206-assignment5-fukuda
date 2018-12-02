@@ -197,10 +197,15 @@ employ_sal_graph
 # Find a good multiple linear regression model with the output being salary, and the variables (some combination of) sex, discipline, rank, years of service, years since phd 
 
 # Some data exploration 
-#plot of salary by gender
-salary_plot <- ggplot (salary_data, aes(x=sex, y=salary))+
-  geom_point(aes(color=faculty.rank), alpha=0.6)
+#plot of salary v years service
+salary_plot <- ggplot (salary_data, aes(x=salary, y=yrs.service))+
+  geom_point(aes(color=sex), alpha=0.6)
 salary_plot
+
+#plot of salary v years service
+salary_plot2 <- ggplot (salary_data, aes(x=salary, y=yrs.since.phd))+
+  geom_point(aes(color=sex), alpha=0.6)
+salary_plot2
 
 #plot of salary by faculty rank
 facultyrank_plot <- ggplot (salary_data, aes(x=faculty.rank, y=salary))+
