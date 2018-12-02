@@ -90,7 +90,14 @@ phds_summary3<-melt(phds_summary2, id.vars = 'year')
 phds_graph<- phds_summary3 %>% 
   ggplot(aes(fill = variable, y = value, x = year)) +
   geom_bar(stat = "identity", position = "fill") +
-  scale_x_continuous(breaks = c(1985, 2000, 2015))
+  scale_x_continuous(breaks = c(1985, 2000, 2015)) +
+  scale_y_continuous(expand = c(0,0)) +
+  theme_classic() +
+  labs(x = "\nYear", y = "Proportion\n", title = "Proportion of Female PhD Recipients\n") +
+  theme(text = element_text(family = "Times New Roman")) + 
+  theme(plot.title = element_text(hjust = 0.5, size = 13)) +
+  theme(axis.title = element_text(size = 12), axis.text = element_text(size = 10)) 
+
 
 phds_graph
 
