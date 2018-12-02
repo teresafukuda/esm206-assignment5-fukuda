@@ -80,6 +80,8 @@ rownames(phds_summary) <- c("1985", "2000", "2015")
 phds_chi <- chisq.test(phds_summary)
 phds_chi
 
+phds_prop <- prop.table(as.matrix(phds_summary))
+
 # p-value < 0.001 therefore there is a significant association between the year a degree was awarded and the number of PhDs awarded to women in that year (X^2 = 2073, *p* , 0.001)
 
 
