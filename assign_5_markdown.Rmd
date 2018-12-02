@@ -90,7 +90,8 @@ phds_summary3<-melt(phds_summary2, id.vars = 'year')
 
 phds_graph<- phds_summary3 %>% 
   ggplot(aes(fill = variable, y = value, x = year)) +
-  geom_bar(stat = "identity", position = "fill")
+  geom_bar(stat = "identity", position = "fill") +
+  scale_x_continuous(breaks = c(1985, 2000, 2015))
 
 phds_graph
 
