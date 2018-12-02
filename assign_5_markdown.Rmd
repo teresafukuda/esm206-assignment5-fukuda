@@ -82,6 +82,18 @@ phds_chi
 
 phds_prop <- prop.table(as.matrix(phds_summary), 1)
 
+phds_summary2 <- phds %>%
+  select("year", "physci_f", "engineer_f", "ed_f", "humart_f") %>% 
+  filter(year == "1985" | year == "2000" | year == "2015") 
+
+phds_summary3<-melt(phds_summary2, id.vars = 'year')
+
+phds_graph<- phds_summary3 %>% 
+  ggplot(aes(fill = variable, y = value, x = year)) +
+  geom_bar(stat = "identity", position = "fill")
+
+phds_graph
+
 # p-value < 0.001 therefore there is a significant association between the year a degree was awarded and the number of PhDs awarded to women in that year (X^2 = 2073, *p* , 0.001)
 
 
@@ -121,7 +133,7 @@ female_post_qq
 post_sal_test <- wilcox.test(med_salary$postdoc_f, med_salary$postdoc_m)
 post_sal_test
 
-med_sal_2<-melt(med_salary, id.vars = 'field' )
+med_sal_2<-melt(med_salary, id.vars = 'field')
 
 post_sal_graph <- med_sal_2 %>%  
   filter(variable == "postdoc_m" | variable == "postdoc_f") %>% 
