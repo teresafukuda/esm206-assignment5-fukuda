@@ -15,6 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library (stargazer)
 library(reshape2)
+library(RColorBrewer)
 
 grad_enroll <-read_csv("grad_enrollment.csv")
 med_salary <-read_csv("median_salary_postdoc.csv")
@@ -53,7 +54,7 @@ enroll_graph <- grad_enroll %>%
   geom_smooth(aes(x = Year, y = total_females),method = lm, se = TRUE, size = 0.5, color = "gray20")+
   theme_classic() +
   theme(legend.title=element_blank()) +
-  scale_color_manual(" ", breaks = c("total_males", "total_females"), values = c("total_males" = "blue", "total_females" = "pink"), labels=c("Males", "Females")) +
+  scale_color_manual(" ", breaks = c("total_males", "total_females"), values = c("total_males" = "royalblue1", "total_females" = "palevioletred1"), labels=c("Males", "Females")) +
   labs(x = "\nYear", y = "Total Enrollment\n", title = "Male and Female Graduate Enrollment (1967-2015)\n") +
   scale_x_continuous(expand = c(0,0), limits = c(1967, 2015)) +
   theme(text = element_text(family = "Times New Roman")) + 
@@ -96,7 +97,9 @@ phds_graph<- phds_summary3 %>%
   labs(x = "\nYear", y = "Proportion\n", title = "Proportion of Female PhD Recipients\n") +
   theme(text = element_text(family = "Times New Roman")) + 
   theme(plot.title = element_text(hjust = 0.5, size = 13)) +
-  theme(axis.title = element_text(size = 12), axis.text = element_text(size = 10)) 
+  theme(axis.title = element_text(size = 12), axis.text = element_text(size = 10)) +
+  scale_fill_manual(values = c("lightpink1", "palevioletred1", "violetred", "maroon4"), labels = c("Physical and Earth Sciences", "Engineering", "Education", "Humanities and Arts")) +
+  theme(legend.title=element_blank())
 
 
 phds_graph
@@ -146,7 +149,7 @@ post_sal_graph <- med_sal_2 %>%
   filter(variable == "postdoc_m" | variable == "postdoc_f") %>% 
   ggplot(aes(x = field, y = value)) +
   geom_col(aes(fill = variable), position = "dodge") +
-  scale_fill_manual(values = c("blue", "pink"), labels = c("Male", "Female")) +
+  scale_fill_manual(values = c("royalblue1", "palevioletred1"), labels = c("Male", "Female")) +
   theme_classic() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 8)) +
   theme(legend.title=element_blank())+
@@ -175,7 +178,7 @@ employ_sal_graph <- med_sal_2 %>%
   filter(variable == "employment_m" | variable == "employment_f") %>% 
   ggplot(aes(x = field, y = value)) +
   geom_col(aes(fill = variable), position = "dodge") +
-  scale_fill_manual(values = c("blue", "pink"), labels = c("Male", "Female")) +
+  scale_fill_manual(values = c("royalblue1", "palevioletred1"), labels = c("Male", "Female")) +
   theme_classic() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 8)) +
   theme(legend.title=element_blank())+
