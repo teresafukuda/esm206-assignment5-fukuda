@@ -240,13 +240,14 @@ summary(salary_lm2)
 
 # yrs.service still has a negative coefficient... this is not logical
 
-# taking out faculty.rank (since rank is mostly just determined by how long they are there?)
+# taking out yrs.service since that and faculty.rank are likely collinear
 salary_lm3 <- lm(salary ~ faculty.rank + discipline + yrs.since.phd + sex + sex*faculty.rank, data=salary_data)
 
 summary(salary_lm3)
 
 plot(salary_lm3)
 
+# taking out yrs.since.phd and keeping yrs.service
 salary_lm4<- lm (salary~discipline+yrs.service+sex, data= salary_data)
 
 summary(salary_lm4)
