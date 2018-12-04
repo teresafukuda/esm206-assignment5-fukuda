@@ -16,6 +16,7 @@ library(tidyverse)
 library (stargazer)
 library(reshape2)
 library(RColorBrewer)
+library(car)
 
 grad_enroll <-read_csv("grad_enrollment.csv")
 med_salary <-read_csv("median_salary_postdoc.csv")
@@ -236,12 +237,18 @@ summary(salary_lm1)
 
 salary_lm2 <- lm(salary ~ sex+faculty.rank+discipline+yrs.since.phd, data=salary_data)
 
+AIC (salary_lm2) # 9097.22
+vif(salary_lm2) # all <4
+
 summary(salary_lm2)
 
 # yrs.service still has a negative coefficient... this is not logical
 
 # taking out yrs.service since that and faculty.rank are likely collinear
 salary_lm3 <- lm(salary ~ faculty.rank + discipline + yrs.since.phd + sex + sex*faculty.rank, data=salary_data)
+
+AIC(salary_lm3) # 9100.777
+vif(salary_lm3) # really high for faculty.rank and faculty.rank*sex
 
 summary(salary_lm3)
 
@@ -250,9 +257,12 @@ plot(salary_lm3)
 # taking out yrs.since.phd and keeping yrs.service
 salary_lm4<- lm (salary~discipline+yrs.service+sex, data= salary_data)
 
+AIC(salary_lm4) # 9257.162
+vif(salary_lm4) # all < 4
+
 summary(salary_lm4)
 
-stargazer(salary_lm2, salary_lm3, salary_lm4, type = "html")
+# stargazer(salary_lm2, salary_lm3, salary_lm4, type = "html")
 
 ```
 
