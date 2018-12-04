@@ -65,7 +65,7 @@ enroll_graph <- grad_enroll %>%
   theme_classic() +
   theme(legend.title=element_blank()) +
   scale_color_manual(" ", breaks = c("total_males", "total_females"), values = c("total_males" = "royalblue1", "total_females" = "palevioletred1"), labels=c("Males", "Females")) +
-  labs(x = "\nYear", y = "Total Enrollment\n", title = "Male and Female Graduate Enrollment (1967-2015)\n") +
+  labs(x = "\nYear", y = "Total Enrollment\n") +
   scale_x_continuous(expand = c(0,0), limits = c(1967, 2015)) +
   theme(text = element_text(family = "Times New Roman")) + 
   theme(plot.title = element_text(hjust = 0.5, size = 13)) +
@@ -104,7 +104,7 @@ phds_graph<- phds_summary3 %>%
   scale_x_continuous(breaks = c(1985, 2000, 2015)) +
   scale_y_continuous(expand = c(0,0)) +
   theme_classic() +
-  labs(x = "\nYear", y = "Proportion\n", title = "Proportion of Female PhD Recipients\n") +
+  labs(x = "\nYear", y = "Proportion\n") +
   theme(text = element_text(family = "Times New Roman")) + 
   theme(plot.title = element_text(hjust = 0.5, size = 13)) +
   theme(axis.title = element_text(size = 12), axis.text = element_text(size = 10)) +
@@ -164,7 +164,7 @@ post_sal_graph <- med_sal_2 %>%
   theme(axis.text.x = element_text(hjust = 0.5, size = 8)) +
   theme(axis.text.y = element_text(hjust = 1, vjust = 0.5, size = 8)) +
   theme(legend.title=element_blank())+
-  labs(x = "\nField", y = "Median Salary\n", title = "Male and Female Median Postdoc Salaries 2015\n") +
+  labs(x = "\nField", y = "Median Salary\n") +
   theme(text = element_text(family = "Times New Roman")) + 
   theme(plot.title = element_text(hjust = 0.5, size = 13)) +
   theme(axis.title = element_text(size = 12)) +
@@ -199,7 +199,7 @@ employ_sal_graph <- med_sal_2 %>%
   theme(axis.text.x = element_text(hjust = 0.5, size = 8)) +
   theme(axis.text.y = element_text(hjust = 1, vjust = 0.5, size = 8)) +
   theme(legend.title=element_blank())+
-  labs(x = "\nField", y = "Median Salary\n", title = "Male and Female Median non Postdoc Salaries 2015\n") +
+  labs(x = "\nField", y = "Median Salary\n") +
   theme(text = element_text(family = "Times New Roman")) + 
   theme(plot.title = element_text(hjust = 0.5, size = 13)) +
   theme(axis.title = element_text(size = 12)) +
@@ -274,7 +274,7 @@ vif(salary_lm4) # all < 4
 
 summary(salary_lm4)
 
-stargazer(salary_lm1, salary_lm2, salary_lm3, salary_lm4, type = "html")
+stargazer(salary_lm1, salary_lm2, salary_lm3, type = "html")
 
 ```
 
