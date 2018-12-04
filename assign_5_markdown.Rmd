@@ -41,11 +41,19 @@ male_grad <- lm(grad_enroll$total_males ~ grad_enroll$Year)
 summary(male_grad)
 plot(male_grad)
 
+# Correlation Testing for male graduates:
+cor(x = grad_enroll$Year, y = grad_enroll$total_males, use = "everything", method = c("pearson"))
+# Pearson's R = 0.92
+
 #creating a linear model for female graduate enrollment
 female_grad <- lm(grad_enroll$total_females ~ grad_enroll$Year)
 
 summary(female_grad)
 plot(female_grad)
+
+# Correlation Testing for male graduates:
+cor(x = grad_enroll$Year, y = grad_enroll$total_females, method = c("pearson"))
+# Pearson's R = 0.99
 
 #create a graph of the models
 enroll_graph <- grad_enroll %>% 
@@ -102,7 +110,6 @@ phds_graph<- phds_summary3 %>%
   theme(axis.title = element_text(size = 12), axis.text = element_text(size = 10)) +
   scale_fill_manual(values = c("lightpink1", "palevioletred1", "violetred", "maroon4"), labels = c("Physical and Earth Sciences", "Engineering", "Education", "Humanities and Arts")) +
   theme(legend.title=element_blank())
-
 
 phds_graph
 
