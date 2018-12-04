@@ -209,7 +209,7 @@ employ_sal_graph <- med_sal_2 %>%
 employ_sal_graph
 ```
 
-```{r}
+```{r, results="asis"}
 ###############################################################
 # 4) Exploring academic salaries for professors in U.S. colleges
 ###############################################################
@@ -276,7 +276,7 @@ vif(salary_lm4) # all < 4
 
 summary(salary_lm4)
 
-# stargazer(salary_lm2, salary_lm3, salary_lm4, type = "html")
+stargazer(salary_lm2, salary_lm3, salary_lm4, type = "html")
 
 ```
 
