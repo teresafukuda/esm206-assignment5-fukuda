@@ -17,6 +17,7 @@ library (stargazer)
 library(reshape2)
 library(RColorBrewer)
 library(car)
+library(effsize)
 
 grad_enroll <-read_csv("grad_enrollment.csv")
 med_salary <-read_csv("median_salary_postdoc.csv")
@@ -153,14 +154,15 @@ post_sal_graph <- med_sal_2 %>%
   scale_fill_manual(values = c("royalblue1", "palevioletred1"), labels = c("Male", "Female")) +
   theme_classic() +
   coord_flip() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 8)) +
+  theme(axis.text.x = element_text(hjust = 0.5, size = 8)) +
+  theme(axis.text.y = element_text(hjust = 1, vjust = 0.5, size = 8)) +
   theme(legend.title=element_blank())+
   labs(x = "\nField", y = "Median Salary\n", title = "Male and Female Median Postdoc Salaries 2015\n") +
   theme(text = element_text(family = "Times New Roman")) + 
   theme(plot.title = element_text(hjust = 0.5, size = 13)) +
   theme(axis.title = element_text(size = 12)) +
   scale_y_continuous(expand = c(0,0)) +
-  scale_x_discrete(labels = function(x) lapply(strwrap(x, width = 20, simplify = FALSE), paste, collapse="\n"))
+  scale_x_discrete(labels = function(y) lapply(strwrap(y, width = 25, simplify = FALSE), paste, collapse="\n"))
 
 post_sal_graph
 
@@ -176,6 +178,10 @@ female_employ_sal #maybe normally distributed?
 employ_sal_test <- wilcox.test(med_salary$employment_f, med_salary$employment_m, paired = TRUE)
 employ_sal_test
 
+#there is a significant difference, p = .003, so test cliffs delta
+employ_sal_cliffs <- cliff.delta(med_salary$employment_f, med_salary$employment_m)
+employ_sal_cliffs
+
 employ_sal_graph <- med_sal_2 %>%  
   filter(variable == "employment_m" | variable == "employment_f") %>% 
   ggplot(aes(x = field, y = value)) +
@@ -183,14 +189,15 @@ employ_sal_graph <- med_sal_2 %>%
   geom_col(aes(fill = variable), position = "dodge") +
   scale_fill_manual(values = c("royalblue1", "palevioletred1"), labels = c("Male", "Female")) +
   theme_classic() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 8)) +
+  theme(axis.text.x = element_text(hjust = 0.5, size = 8)) +
+  theme(axis.text.y = element_text(hjust = 1, vjust = 0.5, size = 8)) +
   theme(legend.title=element_blank())+
   labs(x = "\nField", y = "Median Salary\n", title = "Male and Female Median non Postdoc Salaries 2015\n") +
   theme(text = element_text(family = "Times New Roman")) + 
   theme(plot.title = element_text(hjust = 0.5, size = 13)) +
   theme(axis.title = element_text(size = 12)) +
   scale_y_continuous(expand = c(0,0)) +
-  scale_x_discrete(labels = function(x) lapply(strwrap(x, width = 20, simplify = FALSE), paste, collapse="\n"))
+  scale_x_discrete(labels = function(y) lapply(strwrap(y, width = 25, simplify = FALSE), paste, collapse="\n"))
 
 employ_sal_graph
 ```
