@@ -74,7 +74,7 @@ enroll_graph <- grad_enroll %>%
 enroll_graph
 ```
 
-```{r}
+```{r, fig.height = 4}
 ###############################################################
 # 2) Shifts in female PhD recipients by field (1985, 2000, and 2015)
 ###############################################################
@@ -118,7 +118,7 @@ phds_graph
 
 ```
 
-```{r}
+```{r, fig.height = 4}
 ###############################################################
 # 3) Male and female salaries for starting postdoctoral and other employment positions (2015)
 ###############################################################
